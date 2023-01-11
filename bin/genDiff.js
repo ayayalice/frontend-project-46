@@ -3,6 +3,8 @@ import { Command } from 'commander';
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const mknode = (key, value, type, meta = {}) => ({
   key,
@@ -45,12 +47,15 @@ const render = (ast) => {
   return `{\n${gendiff.join('\n')}\n}`;
 };
 
-const getFixturesPath = (filename) => path.resolve('__fixtures__', filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+export const getFullPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const gendiff = (filepath1, filepath2) => {
+
+export const gendiff = (filepath1, filepath2) => {
   const paths = [filepath1, filepath2];
   const data = paths.map((filepath) => {
-    const fullPaht = getFixturesPath(filepath);
+    const fullPaht = getFullPath(filepath);
     const content = fs.readFileSync(fullPaht, 'utf-8');
     return JSON.parse(content);
   });
