@@ -6,7 +6,7 @@ link:
 	sudo npm link
 lint:
 	npx eslint --fix .
-tests:
+test:
 	NODE_OPTIONS=--experimental-vm-modules npx jest
-tests-coverage:
+test-coverage:
 	NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
