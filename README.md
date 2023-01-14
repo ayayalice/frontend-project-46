@@ -9,8 +9,8 @@ Difference Calculator
 ###Minimum Requirements
 1. Windows/Linux
 2. Node.js
-3.NPM
-4.Git
+3. NPM
+4. Git
 ###Installation and launch instructions
 1. Download the archive with files / clone using the command: git@github.com:ayayalice/frontend-project-46.git
 2. Use in your Node terminal: make install
