@@ -4,16 +4,16 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/884f1efb604de569c125/maintainability)](https://codeclimate.com/github/ayayalice/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/884f1efb604de569c125/test_coverage)](https://codeclimate.com/github/ayayalice/frontend-project-46/test_coverage)
 
-###About project
+### About project
 Difference Calculator
-###Minimum Requirements
+### Minimum Requirements
 1. Windows/Linux
 2. Node.js
 3. NPM
 4. Git
-###Installation and launch instructions
+### Installation and launch instructions
 1. Download the archive with files / clone using the command: git@github.com:ayayalice/frontend-project-46.git
 2. Use in your Node terminal: make install
 3. Use in your Node terminal: genDiff -h
-###Working application example
+### Working application example
 [![asciicast](https://asciinema.org/a/551521.svg)](https://asciinema.org/a/551521)
