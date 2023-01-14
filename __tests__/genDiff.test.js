@@ -1,9 +1,11 @@
 import { expect, test } from '@jest/globals';
 import fs from 'fs';
-import { getFullPath, gendiff } from '../src/index.js';
+import parseCompareFiles from '../src/parseCompareFiles.js';
+import getFullPath from '../src/getPath.js';
 
 const result = fs.readFileSync(getFullPath('result.txt'), 'utf8');
-console.log(result);
+
 test('compare two files shoold return difference', () => {
-  expect(gendiff('file1.json', 'file2.json')).toEqual(result);
+  expect(parseCompareFiles('file1.json', 'file2.json')).toEqual(result);
+  expect(parseCompareFiles('file1.yml', 'file2.yml')).toEqual(result);
 });
