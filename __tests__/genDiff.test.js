@@ -1,7 +1,6 @@
 import { expect, test } from '@jest/globals';
 import fs from 'fs';
-import gendiff from '../src/index.js';
-import { getFullPath } from '../src/index.js';
+import gendiff, { getFullPath } from '../src/index.js';
 
 const result = fs.readFileSync(getFullPath('result.txt'), 'utf8');
 

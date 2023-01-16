@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
-const mknode = (key, value, type, meta = {}) => ({ key, value, type, meta });
+const mknode = (key, value, type, meta = {}) => ({
+  key, value, type, meta,
+});
 
 const buildTree = (objects) => {
   const [obj1, obj2] = objects;

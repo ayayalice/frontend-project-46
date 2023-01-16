@@ -16,7 +16,9 @@ const makeString = (value, num = 1) => {
 
 const stylish = (obj) => {
   const iter = (node, num = 1) => {
-    const { type, key, value, meta, children } = node;
+    const {
+      type, key, value, meta, children,
+    } = node;
     switch (type) {
       case 'removed':
       case 'added':

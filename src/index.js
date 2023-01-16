@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import parse from './parsers.js';
 import buildTree from './buildTree.js';
 import getRenderFormat from './formatters/index.js';
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
