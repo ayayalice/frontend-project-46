@@ -1,10 +1,17 @@
 import { expect, test } from '@jest/globals';
 import fs from 'fs';
-import gendiff, { getFullPath } from '../src/index.js';
+import gendiff from '../src/index.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const result = fs.readFileSync(getFullPath('result.txt'), 'utf8');
-const plainResult = fs.readFileSync(getFullPath('plainResult.txt'), 'utf8');
-const jsonResult = fs.readFileSync(getFullPath('jsonResult.txt'), 'utf8');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const getFixturePath = (filepath) => path.join(__dirname, '..', '__fixtures__', filepath);
+const readFixture = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8').trim();
+const result = readFixture('result.txt');
+const plainResult = readFixture('plainResult.txt');
+const jsonResult = readFixture('jsonResult.txt');
 
 test('genDiff', () => {
   expect(gendiff('file1.json', 'file2.yml')).toEqual(result);
