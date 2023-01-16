@@ -1,17 +1,17 @@
-import stylish from './stylish.js';
-import plain from './plain.js';
+import formatStylish from './stylish.js';
+import formatPlain from './plain.js';
 
-const getRenderFormat = (tree, format) => {
+const formatData = (data, format) => {
   switch (format) {
     case 'stylish':
-      return stylish(tree);
+      return formatStylish(data);
     case 'plain':
-      return plain(tree);
+      return formatPlain(data);
     case 'json':
-      return JSON.stringify(tree);
+      return JSON.stringify(data, null, 2);
     default:
-      throw new Error(`format ${format} is not supported`);
+      throw new Error(`Unknown format: ${format}`);
   }
 };
 
-export default getRenderFormat;
+export default formatData;

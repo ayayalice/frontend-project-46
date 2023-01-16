@@ -1,13 +1,16 @@
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 
-export default (data, ext) => {
-  switch (ext) {
-    case '.yml':
-    case '.yaml':
-      return yaml.load(data);
-    case '.json':
+const parse = (data, format) => {
+  switch (format) {
+    case 'json':
       return JSON.parse(data);
+    case 'yml':
+      return load(data);
+    case 'yaml':
+      return load(data);
     default:
-      throw new Error(`extension ${ext} is not supported`);
+      throw new Error(`Unknown format: ${format}`);
   }
 };
+
+export default parse;

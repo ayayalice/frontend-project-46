@@ -1,23 +1,20 @@
 import _ from 'lodash';
 
-const mknode = (key, value, type, meta = {}) => ({ key, value, type, meta });
+const buildTree = (data1, data2) => {
+  const keys1 = Object.keys(data1);
+  const keys2 = Object.keys(data2);
+  const keys = _.sortBy(_.union(keys1, keys2));
 
-const buildTree = (objects) => {
-  const [obj1, obj2] = objects;
-  const keys = _.union(_.keys(obj1), _.keys(obj2));
-  const sortedKeys = _.sortBy(keys);
-  const nodes = sortedKeys.map((key) => {
-    const [value1, value2] = [obj1[key], obj2[key]];
-    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
-      return { key, type: 'nested', children: buildTree([value1, value2]) };
+  return keys.map((key) => {
+    if (!_.has(data1, key)) return { key, type: 'added', value: data2[key] };
+    if (!_.has(data2, key)) return { key, type: 'deleted', value: data1[key] };
+    if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) return { key, type: 'nested', children: buildTree(data1[key], data2[key]) };
+    if (!_.isEqual(data1[key], data2[key])) {
+      return { key, type: 'changed', value1: data1[key], value2: data2[key] };
     }
-    if (!_.has(obj1, key)) return mknode(key, value2, 'added');
-    if (!_.has(obj2, key)) return mknode(key, value1, 'removed');
-    if (value1 !== value2) return mknode(key, value2, 'updated', { oldValue: value1 });
 
-    return mknode(key, value1, 'unchanged');
+    return { key, type: 'unchanged', value: data1[key] };
   });
-  return nodes;
 };
 
 export default buildTree;

@@ -2,21 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import parse from './parsers.js';
 import buildTree from './buildTree.js';
-import getRenderFormat from './formatters/index.js';
+import formatData from './formatters/index.js';
 
+const buildAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
+const getFormat = (filepath) => path.extname(filepath).slice(1);
+const getData = (filepath) => parse(fs.readFileSync(filepath, 'utf-8'), getFormat(filepath));
 
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  const data1 = getData(buildAbsolutePath(filepath1));
+  const data2 = getData(buildAbsolutePath(filepath2));
+  const tree = buildTree(data1, data2);
 
-export const getFullPath = (filepath) => path.resolve(process.cwd(), '__fixtures__', filepath);
-const parseData = (filepath) => {
-  const ext = path.extname(filepath);
-  const data = fs.readFileSync(getFullPath(filepath), 'utf-8');
-  return parse(data, ext);
-};
-const gendiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const paths = [filepath1, filepath2];
-  const data = paths.map(parseData);
-  const tree = buildTree(data);
-  return getRenderFormat(tree, formatName);
+  return formatData(tree, formatName);
 };
 
-export default gendiff;
+export default genDiff;
