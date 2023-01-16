@@ -16,4 +16,4 @@ Difference Calculator
 2. Use in your Node terminal: make install
 3. Use in your Node terminal: genDiff -h
 ### Working application example
-[![asciicast](https://asciinema.org/a/552020.svg)](https://asciinema.org/a/552020)
+[![asciicast](https://asciinema.org/a/552063.svg)](https://asciinema.org/a/552063)
