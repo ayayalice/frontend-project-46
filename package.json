@@ -5,7 +5,7 @@
   "description": "[![Actions Status](https://github.com/ayayalice/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/ayayalice/frontend-project-46/actions)",
   "main": "src/index.js",
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "bin/genDiff.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
