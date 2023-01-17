@@ -25,7 +25,7 @@ test('JSON', () => {
 
 test('YML', () => {
   const filepath1 = getFixturePath('file1.yml');
-  const filepath2 = getFixturePath('file2.yml');
+  const filepath2 = getFixturePath('file2.yaml');
 
   expect(genDiff(filepath1, filepath2)).toEqual(expectedResult1);
   expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedResult1);
