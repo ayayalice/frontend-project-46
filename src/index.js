@@ -8,8 +8,10 @@ const buildAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
 const getFormat = (filepath) => path.extname(filepath).slice(1);
 const readData = (filepath) => fs.readFileSync(filepath, 'utf-8');
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const parsedData1 = parse(readData(buildAbsolutePath(filepath1)), getFormat(buildAbsolutePath(filepath1)));
-  const parsedData2 = parse(readData(buildAbsolutePath(filepath2)), getFormat(buildAbsolutePath(filepath2)));
+  const data1 = buildAbsolutePath(filepath1);
+  const data2 = buildAbsolutePath(filepath2);
+  const parsedData1 = parse(readData(data1), getFormat(data1));
+  const parsedData2 = parse(readData(data2), getFormat(data2));
   const tree = buildTree(parsedData1, parsedData2);
 
   return formatData(tree, formatName);
