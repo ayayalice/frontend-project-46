@@ -7,11 +7,10 @@ import formatData from './formatters/index.js';
 const buildAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
 const getFormat = (filepath) => path.extname(filepath).slice(1);
 const readData = (filepath) => fs.readFileSync(filepath, 'utf-8');
-const parseData = (filepath) => parse(readData(filepath), getFormat(filepath));
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const data1 = parseData(buildAbsolutePath(filepath1));
-  const data2 = parseData(buildAbsolutePath(filepath2));
-  const tree = buildTree(data1, data2);
+  const parsedData1 = parse(readData(buildAbsolutePath(filepath1)), getFormat(buildAbsolutePath(filepath1)));
+  const parsedData2 = parse(readData(buildAbsolutePath(filepath2)), getFormat(buildAbsolutePath(filepath2)));
+  const tree = buildTree(parsedData1, parsedData2);
 
   return formatData(tree, formatName);
 };
