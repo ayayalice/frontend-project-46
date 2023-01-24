@@ -8,7 +8,7 @@ const stringify = (data) => {
   return String(data);
 };
 
-const iter = (nodes, path) => nodes.flatMap((node) => {
+const iterate = (nodes, path) => nodes.flatMap((node) => {
   const { key } = node;
   const newPath = [...path, key];
 
@@ -22,12 +22,12 @@ const iter = (nodes, path) => nodes.flatMap((node) => {
     case 'unchanged':
       return [];
     case 'nested':
-      return iter(node.children, newPath);
+      return iterate(node.children, newPath);
     default:
       throw new Error(`Unknown type: ${node.type}`);
   }
 });
 
-const formatPlain = (tree) => `${iter(tree, []).join('\n')}`;
+const formatPlain = (tree) => `${iterate(tree, []).join('\n')}`;
 
 export default formatPlain;

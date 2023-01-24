@@ -14,6 +14,7 @@ Difference Calculator
 ### Installation and launch instructions
 1. Download the archive with files / clone using the command: git@github.com:ayayalice/frontend-project-46.git
 2. Use in your Node terminal: make install
-3. Use in your Node terminal: genDiff -h
+3. Use in your Node terminal: make link
+4. Use in your Node terminal: gendiff -h
 ### Working application example
 [![asciicast](https://asciinema.org/a/552063.svg)](https://asciinema.org/a/552063)
